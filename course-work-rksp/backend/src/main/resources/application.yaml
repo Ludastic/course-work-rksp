@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://91.184.232.244:5432/reviews
+    username: student
+    password: QAZxsw123
+    driver-class-name: org.postgresql.Driver
+  hikari:
+    max-lifetime: 55000
+    keepalive-time: 30000
+    connection-timeout: 2000
+    validation-timeout: 1000
+    leak-detection-threshold: 5000
+    connection-test-query: SELECT 1
+    idle-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        hbm2ddl.auto: update
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB

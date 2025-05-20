@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://backend:8080
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    depends_on:
+      - backend
+
+  backend:
+    build: backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/reviewdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - ./uploads:/app/uploads
+
+
+      
